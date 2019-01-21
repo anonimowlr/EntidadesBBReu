@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="calculobbreuTestesPU" transaction-type="RESOURCE_LOCAL">
-    <!--gitignore this file-->
+    
     <properties>		
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.105.87.250:3306/calculobbreu"/>
       <property name="javax.persistence.jdbc.user" value="calculobbreuteste"/>
