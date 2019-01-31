@@ -7,7 +7,6 @@ package centralcapturasjudicial.model.entity.bbgiro;
 
 import centralcapturasjudicial.model.entity.AbstractEntity;
 import centralcapturasjudicial.model.entity.bbgiro.*;
-import centralcapturasjudicial.model.entity.cdc.ParcelaOperacaoCdc;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,8 +31,8 @@ import javax.persistence.TemporalType;
  * @author F5116163
  */
 @Entity
-@Table(name="tab_exto_cnsd")
-public class ExtratoConsolidado implements Serializable, AbstractEntity {
+@Table(name="tab_abtr_teto")
+public class AberturaTeto implements Serializable, AbstractEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,14 +44,13 @@ public class ExtratoConsolidado implements Serializable, AbstractEntity {
     private OperacaoGiro operacaoGiro;
     
     @Temporal(TemporalType.DATE)
-    @Column(name="dt_mvt")
-    private Date dtMovimento;    
-    @Column(name="tx_efe_opr")
-    private String txEfeitoOperacao;
-    @Column(name="tx_dcr_lcto")
-    private String txDescricaoLancamento;
-    @Column(name="vl_lcto")
-    private Double vlLancamento;    
+    @Column(name="dt_inc")
+    private Date dtInicio;    
+    @Temporal(TemporalType.DATE)
+    @Column(name="dt_fim")
+    private Date dtFim; 
+    @Column(name="vl_taxa")
+    private Double vlTaxa;    
 
     /**
      * @return the id
@@ -83,59 +81,45 @@ public class ExtratoConsolidado implements Serializable, AbstractEntity {
     }
 
     /**
-     * @return the dtProposta
+     * @return the dtInicio
      */
-    public Date getDtMovimento() {
-        return dtMovimento;
+    public Date getDtInicio() {
+        return dtInicio;
     }
 
     /**
-     * @param dtProposta the dtProposta to set
+     * @param dtInicio the dtInicio to set
      */
-    public void setDtMovimento(Date dtProposta) {
-        this.dtMovimento = dtProposta;
+    public void setDtInicio(Date dtInicio) {
+        this.dtInicio = dtInicio;
     }
 
     /**
-     * @return the txEfeitoOperacao
+     * @return the dtFim
      */
-    public String getTxEfeitoOperacao() {
-        return txEfeitoOperacao;
+    public Date getDtFim() {
+        return dtFim;
     }
 
     /**
-     * @param txEfeitoOperacao the txEfeitoOperacao to set
+     * @param dtFim the dtFim to set
      */
-    public void setTxEfeitoOperacao(String txEfeitoOperacao) {
-        this.txEfeitoOperacao = txEfeitoOperacao;
+    public void setDtFim(Date dtFim) {
+        this.dtFim = dtFim;
     }
 
     /**
-     * @return the txDescricaoLancamento
+     * @return the vlTaxa
      */
-    public String getTxDescricaoLancamento() {
-        return txDescricaoLancamento;
+    public Double getVlTaxa() {
+        return vlTaxa;
     }
 
     /**
-     * @param txDescricaoLancamento the txDescricaoLancamento to set
+     * @param vlTaxa the vlTaxa to set
      */
-    public void setTxDescricaoLancamento(String txDescricaoLancamento) {
-        this.txDescricaoLancamento = txDescricaoLancamento;
-    }
-
-    /**
-     * @return the vlLancamento
-     */
-    public Double getVlLancamento() {
-        return vlLancamento;
-    }
-
-    /**
-     * @param vlLancamento the vlLancamento to set
-     */
-    public void setVlLancamento(Double vlLancamento) {
-        this.vlLancamento = vlLancamento;
+    public void setVlTaxa(Double vlTaxa) {
+        this.vlTaxa = vlTaxa;
     }
 
     public HashMap<Integer,String> getValues(){
@@ -143,18 +127,9 @@ public class ExtratoConsolidado implements Serializable, AbstractEntity {
         
         HashMap<Integer,String> values = new HashMap<>();
         
-        values.put(1, fd.format(getDtMovimento()));
-        values.put(2, getTxDescricaoLancamento());
-        
-        Double v = getVlLancamento();
-        String cd = "C";
-        if(getVlLancamento()<0){
-            v = 0 - getVlLancamento();
-            cd = "D";
-        }
-        
-        values.put(3, String.format("%.2f", v).replace(".", ","));
-        values.put(4, cd);
+        values.put(1, fd.format(getDtInicio()));
+        values.put(2, fd.format(getDtFim()));
+        values.put(3, String.format("%.2f", getVlTaxa()).replace(".", ","));
 //        values.put(1, Integer.toString(getMesCartao().getExtrato().getCartao().getOperacao()));
 //        values.put(2, getMesCartao().getDataVencimento().replace(".", "/"));
 //        if(Double.toString(getMesCartao().getTxJuros()) != null) {
@@ -173,6 +148,5 @@ public class ExtratoConsolidado implements Serializable, AbstractEntity {
                         
         return values;
     }
-    
     
 }

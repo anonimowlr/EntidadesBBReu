@@ -36,10 +36,13 @@ public class OperacaoLeasing implements Serializable, AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    
-    @ManyToOne
-    @JoinColumn(name="id_cli_lsg")  
-    private ClienteLeasing clienteLeasing;
+
+    @Column(name="nr_mci_cli")
+    private Long nrMciCliente;
+    @Column(name="tx_nm_cli")
+    private String txNomeCliente;
+    @Column(name="tx_cpj_cnpj_cli")
+    private String txCpfCnpjCliente;
     
     @Column(name="nr_ctr")
     private Long nrContrato;
@@ -78,17 +81,45 @@ public class OperacaoLeasing implements Serializable, AbstractEntity {
     }
 
     /**
-     * @return the clienteLeasing
+     * @return the nrMciCliente
      */
-    public ClienteLeasing getClienteLeasing() {
-        return clienteLeasing;
+    public Long getNrMciCliente() {
+        return nrMciCliente;
     }
 
     /**
-     * @param clienteLeasing the clienteLeasing to set
+     * @param nrMciCliente the nrMciCliente to set
      */
-    public void setClienteLeasing(ClienteLeasing clienteLeasing) {
-        this.clienteLeasing = clienteLeasing;
+    public void setNrMciCliente(Long nrMciCliente) {
+        this.nrMciCliente = nrMciCliente;
+    }
+
+    /**
+     * @return the txNomeCliente
+     */
+    public String getTxNomeCliente() {
+        return txNomeCliente;
+    }
+
+    /**
+     * @param txNomeCliente the txNomeCliente to set
+     */
+    public void setTxNomeCliente(String txNomeCliente) {
+        this.txNomeCliente = txNomeCliente;
+    }
+
+    /**
+     * @return the txCpfCnpjCliente
+     */
+    public String getTxCpfCnpjCliente() {
+        return txCpfCnpjCliente;
+    }
+
+    /**
+     * @param txCpfCnpjCliente the txCpfCnpjCliente to set
+     */
+    public void setTxCpfCnpjCliente(String txCpfCnpjCliente) {
+        this.txCpfCnpjCliente = txCpfCnpjCliente;
     }
 
     /**

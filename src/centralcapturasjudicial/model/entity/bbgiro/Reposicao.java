@@ -37,7 +37,7 @@ public class Reposicao implements Serializable, AbstractEntity {
     @Column(name="id")
     private Long id;
     
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)  
+    @OneToOne(fetch = FetchType.LAZY)  
     @JoinColumn(name="id_opr_giro")
     private OperacaoGiro operacaoGiro;
     
